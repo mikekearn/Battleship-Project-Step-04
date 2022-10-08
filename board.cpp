@@ -46,7 +46,7 @@ void board::displayBoard(string arr[][COLS])
 	}
 	
 	// Display ship names and sizes to keep track during testing.
-	bool displaySizes = true;
+	bool displaySizes = false;
 	if (displaySizes == true)
 	{
 		cout << endl;
