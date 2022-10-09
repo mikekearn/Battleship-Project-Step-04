@@ -60,7 +60,93 @@ void board::displayBoard(string arr[][COLS])
 	}
 }
 
+// This function will recieve the gameboard and player input as a string
+// Then interpret that input into a move, and pass on to the next
+// function to determine a hit or miss.
+void board::playerMove(string arr[][COLS], string str)
+{
+	// pulls characters from string to give as coordinates
+	char playerCharA = toupper(str[0]);
+	char playerCharB = toupper(str[1]);
+	char playerCharC;
+	if (str.length() == 3)
+	{
+		playerCharC = toupper(str[2]);
+	}
+	
+	// attempts to validate inpupt if out of range
+	// using ascii values
+	if (playerCharA < 65 || playerCharA > 74)
+	{
+		cout << "-------------------------------\n";
+		cout << "| Please enter a valid input. |\n";
+		cout << "-------------------------------\n";
+		cout << endl;
+		return;
+	}
+	else if (str.length() == 3)
+	{
+		if (playerCharC != 48)
+		{
+			cout << "-------------------------------\n";
+			cout << "| Please enter a valid input. |\n";
+			cout << "-------------------------------\n";
+			cout << endl;
+			return;
+		}
+	}
+	else
+	{
+		if (playerCharB < 49 || playerCharB > 57)
+		{
+			cout << "-------------------------------\n";
+			cout << "| Please enter a valid input. |\n";
+			cout << "-------------------------------\n";
+			cout << endl;
+			return;
+		}
+	}
+
+	int playerRow = (int)playerCharA-65;
+	int playerCol;
+	if(str.length() == 2)
+	{
+		playerCol = (int)playerCharB-49;
+	}
+	else
+	{
+		playerCol = 9;
+	}
+
+	cout << endl;
+
+	isHit(arr, playerRow, playerCol);
+}
+
+// Currently this only checks whether a space is open or not;
+// anything that is open is automatically a miss, otherwise
+// it is a hit. Nothing else is currently tracked.
+
+// ##### ADD #######
+// Validation check for whether or not the move has been made alread
+// Ensure repeated moves don't count as a hit or a miss;
+// Require new move instead.
+// Count hits and misses.
+// Tally ships destroyed?
 void board::isHit(string arr[][COLS], int row, int col)
 {
-
+	if (arr[row][col] == "[ ]")
+	{
+		arr[row][col] = "[O]";
+		cout << "--------\n";
+		cout << "| MISS |\n";
+		cout << "--------\n";
+	}
+	else
+	{
+		arr[row][col] = "[X]";
+		cout << "--------\n";
+		cout << "| HIT! |\n";
+		cout << "--------\n";
+	}
 }

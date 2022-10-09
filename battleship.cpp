@@ -58,14 +58,16 @@ int main()
 
 		string nextMove;
 
-		cout << "Please enter a two digit position to\nfire upon, such as 'A1'\n";
+		cout << "Please enter a position to\nfire upon, such as 'A1'\n";
 		cout << "(Or enter -1 to quit)\n";
 		cout << "Player move: ";
 		cin >> nextMove;
 
-		if (nextMove.length() != 2)
+		if (nextMove.length() > 3 || nextMove.length() < 2)
 		{
-			cout << "Please enter a valid input.\n";
+			cout << "-------------------------------\n";
+			cout << "| Please enter a valid input. |\n";
+			cout << "-------------------------------\n";
 			cout << endl;
 			continue;
 		}
@@ -75,12 +77,7 @@ int main()
 		}
 		else
 		{
-			char playerChar = nextMove[0];
-			cout << playerChar << endl;
-			int playerRow = 1;
-			int playerCol = 2;
-
-			newGame.isHit(gameBoard, playerRow, playerCol);
+			newGame.playerMove(gameBoard, nextMove);
 		}
 	}
 
