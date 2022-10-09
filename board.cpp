@@ -59,3 +59,8 @@ void board::displayBoard(string arr[][COLS])
 
 	}
 }
+
+void board::isHit(string arr[][COLS], int row, int col)
+{
+
+}

@@ -56,14 +56,31 @@ int main()
 	{
 		newGame.displayBoard(gameBoard);
 
-		int nextMove;
+		string nextMove;
 
-		cout << "Enter -1 to quit. ";
+		cout << "Please enter a two digit position to\nfire upon, such as 'A1'\n";
+		cout << "(Or enter -1 to quit)\n";
+		cout << "Player move: ";
 		cin >> nextMove;
 
-		if (nextMove == -1)
+		if (nextMove.length() != 2)
+		{
+			cout << "Please enter a valid input.\n";
+			cout << endl;
+			continue;
+		}
+		else if (nextMove == "-1")
 		{
 			keepPlaying = false;
+		}
+		else
+		{
+			char playerChar = nextMove[0];
+			cout << playerChar << endl;
+			int playerRow = 1;
+			int playerCol = 2;
+
+			newGame.isHit(gameBoard, playerRow, playerCol);
 		}
 	}
 
